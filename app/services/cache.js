@@ -1,7 +1,7 @@
 const {createClient} = require('redis');
-const config = {}
+const config = {};
 if (process.env.NODE_ENV === 'production') {
-    config.url = REDIS_URL
+    config.url = process.env.REDIS_URL
 }
 const db = createClient(config);
 db.connect();
