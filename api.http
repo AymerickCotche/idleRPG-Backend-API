@@ -1,4 +1,4 @@
-@host=http://localhost:3000/user
+@host=https://api-idlerpg.herokuapp.com/user
 
 ### Add a user
 POST {{host}}/subscribe
