@@ -14,7 +14,7 @@ CREATE TABLE "user" (
 CREATE TABLE "level" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL UNIQUE,
-    "desc" TEXT NOT NULL,
+    "desc" TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -42,7 +42,6 @@ CREATE TABLE "character" (
     "name" TEXT NOT NULL UNIQUE,
     "gold" INT NOT NULL DEFAULT 0,
     "exp" INT NOT NULL DEFAULT 0,
-    "level_character_id" INT NOT NULL REFERENCES "level_character"(id),
     "user_id" INT NOT NULL REFERENCES "user"(id),
     "img_path" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -52,7 +51,7 @@ CREATE TABLE "character" (
 CREATE TABLE "attribute" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL UNIQUE,
-    "desc" TEXT NOT NULL,
+    "desc" TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -94,7 +93,6 @@ CREATE TABLE "item_attribute" (
 
 CREATE TABLE "craft_plan" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "item_id" INT NOT NULL UNIQUE REFERENCES item(id),
     "quantity" INT NOT NULL,
     "component_id" INT NOT NULL REFERENCES item(id),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -120,7 +118,6 @@ CREATE TABLE "job" (
 CREATE TABLE "character_job" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "exp" INT NOT NULL DEFAULT 0,
-    "level_job_id" INT NOT NULL REFERENCES "level_job"(id),
     "character_id" INT NOT NULL REFERENCES "character"(id),
     "job_id" INT NOT NULL REFERENCES "job"(id),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -131,7 +128,7 @@ CREATE TABLE "character_equipment" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "character_id" INT NOT NULL REFERENCES "character"(id),
     "equipment_slot_id" INT NOT NULL REFERENCES "equipment_slot"(id),
-    "item_id" INT NOT NULL REFERENCES "item"(id),
+    "item_id" INT REFERENCES "item"(id),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -148,7 +145,7 @@ CREATE TABLE "character_attribute" (
 CREATE TABLE "inventory" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "character_id" INT NOT NULL REFERENCES "character"(id),
-    "item_id" INT NOT NULL REFERENCES "item"(id),
+    "item_id" INT REFERENCES "item"(id),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -174,7 +171,7 @@ CREATE TABLE "entity_attribute" (
 CREATE TABLE "reward" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL,
-    "desc" TEXT NOT NULL,
+    "desc" TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

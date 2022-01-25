@@ -22,8 +22,6 @@ SELECT * FROM "item_attribute" WHERE FALSE;
 
 SELECT * FROM "item" WHERE FALSE;
 
-SELECT * FROM "craft_plan" WHERE FALSE;
-
 SELECT * FROM "craft_item" WHERE FALSE;
 
 SELECT * FROM "job" WHERE FALSE;
