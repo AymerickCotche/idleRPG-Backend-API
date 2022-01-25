@@ -8,7 +8,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: process.env.ALLOWED_DOMAINS.split(", ")
+    origin: process.env.ALLOWED_DOMAINS.split(", "),
+    exposedHeaders: 'Authorization'
 }));
 
 // app.use(cors({
