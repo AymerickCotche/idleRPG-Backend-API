@@ -12,7 +12,8 @@ const port = process.env.PORT || 5000;
 // }));
 
 app.use(cors({
-    origin: '*'
+    origin: '*',
+    exposedHeaders: 'Authorization'
 }));
 
 app.use(express.json());
