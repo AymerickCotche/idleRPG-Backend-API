@@ -106,7 +106,7 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 		SELECT character.*,
 			(select min (level_character.level) AS level
 			from level_character
-			where level_character.exp_req <= character.exp),
+			where level_character.exp_req >= character.exp),
 			jsonb_agg(DISTINCT to_jsonb(char_att) - 'character_id') AS attributes,
 			jsonb_agg(DISTINCT to_jsonb(char_equ) - 'character_id') AS equipments,
 			jsonb_agg(DISTINCT to_jsonb(char_inv) - 'character_id') AS inventory,
@@ -116,7 +116,7 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 		JOIN char_equ ON char_equ.character_id = character.id
 		JOIN char_inv ON char_inv.character_id = character.id
 		JOIN char_job ON char_job.character_id = character.id
-		WHERE character.user_id = id_user
+		WHERE character.user_id = user_id
 		GROUP BY character.id
 	$$
 LANGUAGE sql;
