@@ -2,7 +2,7 @@
 
 BEGIN;
 
-CREATE OR REPLACE FUNCTION getItemCraft(id_user INT)
+CREATE OR REPLACE FUNCTION getItemCraft()
 	RETURNS TABLE (
 		id INT,
 		name TEXT,

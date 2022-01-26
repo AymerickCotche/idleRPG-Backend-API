@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP FUNCTION getItemCraft(id_user INT);
+DROP FUNCTION getItemCraft();
 
 
 COMMIT;
