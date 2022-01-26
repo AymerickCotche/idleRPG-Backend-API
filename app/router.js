@@ -14,7 +14,7 @@ router.post('/user/subscribe', tempMW.subscribeUser, tempMW.createCharacter);
 router.post('/user/login', userController.login);
 router.get('/user/infos', jwtMW, userController.getInfos);
 
-router.get('/character/:id', characterController.findOne);
+router.get('/character/', characterController.findOne);
 
 router.post('/inventory', jwtMW, inventoryController.addItem);
 router.delete('/inventory', jwtMW, inventoryController.removeItem);
