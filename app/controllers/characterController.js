@@ -7,7 +7,7 @@ module.exports = {
     async findOne (request, response) {
         try {
             const id = Number(request.params.id);
-            const character = await Character.findOne(id);
+            const character = await Character.findOne();
             if (!character)
                 return response.status(404).json(`No character found for the user with id ${id}`);
             const token = jwt.makeToken(request.userId);

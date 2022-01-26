@@ -8,10 +8,10 @@ class Character {
         }
     }
 
-    static async findOne(id) {
+    static async findOne() {
         try {
-            console.log('id', id);
-            const {rows} = await db.query('SELECT * FROM getCharacter($1)', [id]);
+            const {rows} = await db.query('SELECT * FROM getCharacter(1)');
+            console.log(rows);
             if (rows[0]) {
                 return new Character(rows[0]);
             }
