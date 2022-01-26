@@ -6,7 +6,7 @@ module.exports = {
 
     async findOne (request, response) {
         try {
-            const id = Number(request.body.userId);
+            const id = Number(request.params.id);
             const character = await Character.findOne(id);
             if (!character)
                 return response.status(404).json(`No character found for the user with id ${id}`);
