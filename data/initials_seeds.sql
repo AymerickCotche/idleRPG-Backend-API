@@ -55,7 +55,7 @@ INSERT INTO "level_job" ("level", "exp_req", "level_id") VALUES
     (10, 55, 2);
 
 INSERT INTO "item_type" ("name", "desc") VALUES
-    ('poisson', 'objet utilisable et qui se détruit après consommation'),
+    ('consommable', 'objet utilisable et qui se détruit après consommation'),
     ('ressource', 'objet necessaire à la fabrication de d''autre objet'),
     ('arme', 'augmente les dégats du personnage'),
     ('casque', 'augmente la force du personnage'),
@@ -63,30 +63,30 @@ INSERT INTO "item_type" ("name", "desc") VALUES
     ('bottes', 'augmente la dextérité du personnage');
 
 INSERT INTO "item" ("name", "item_type_id", "img_path") VALUES
-    ('fer', 1, 'lien/de/limage'),
-    ('bronze', 1, 'lien/de/limage'),
-    ('or', 1, 'lien/de/limage'),
-    ('cobalte', 1, 'lien/de/limage'),
-    ('grenouille', 2, 'lien/de/limage'),
-    ('calamar', 2, 'lien/de/limagee'),
-    ('carpe dorée', 2, 'lien/de/limage'),
-    ('saumon', 2, 'lien/de/limage'),
+    ('fer', 2, 'lien/de/limage'),
+    ('bronze', 2, 'lien/de/limage'),
+    ('or', 2, 'lien/de/limage'),
+    ('cobalte', 2, 'lien/de/limage'),
+    ('grenouille', 1, 'lien/de/limage'),
+    ('calamar', 1, 'lien/de/limagee'),
+    ('carpe dorée', 1, 'lien/de/limage'),
+    ('saumon', 1, 'lien/de/limage'),
     ('épée de fer', 3, 'lien/de/limage'),
-    ('casque de fer', 3, 'lien/de/limage'),
-    ('armure de fer', 3, 'lien/de/limage'),
-    ('bottes de fer', 3, 'lien/de/limage'),
+    ('casque de fer', 4, 'lien/de/limage'),
+    ('armure de fer', 5, 'lien/de/limage'),
+    ('bottes de fer', 6, 'lien/de/limage'),
     ('épée de bronze', 3, 'lien/de/limage'),
-    ('casque de bronze', 3, 'lien/de/limage'),
-    ('armure de bronze', 3, 'lien/de/limage'),
-    ('bottes de bronze', 3, 'lien/de/limage'),
+    ('casque de bronze', 4, 'lien/de/limage'),
+    ('armure de bronze', 5, 'lien/de/limage'),
+    ('bottes de bronze', 6, 'lien/de/limage'),
     ('épée d''or', 3, 'lien/de/limage'),
-    ('casque d''or', 3, 'lien/de/limage'),
-    ('armure d''or', 3, 'lien/de/limage'),
-    ('bottes d''or', 3, 'lien/de/limage'),
+    ('casque d''or', 4, 'lien/de/limage'),
+    ('armure d''or', 5, 'lien/de/limage'),
+    ('bottes d''or', 6, 'lien/de/limage'),
     ('épée de cobalte', 3, 'lien/de/limage'),
-    ('casque de cobalte', 3, 'lien/de/limage'),
-    ('armure de cobalte', 3, 'lien/de/limage'),
-    ('bottes de cobalte', 3, 'lien/de/limage');
+    ('casque de cobalte', 4, 'lien/de/limage'),
+    ('armure de cobalte', 5, 'lien/de/limage'),
+    ('bottes de cobalte', 6, 'lien/de/limage');
     
 INSERT INTO "craft_plan" ("quantity", "component_id") VALUES
     (1, 1),
