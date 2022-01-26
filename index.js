@@ -18,7 +18,7 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use('/user', router);
+app.use('', router);
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`);

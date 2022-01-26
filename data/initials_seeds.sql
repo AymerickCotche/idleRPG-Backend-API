@@ -15,7 +15,13 @@ INSERT INTO "equipment_slot" ("name") VALUES
 
 INSERT INTO "reward" ("name", "desc") VALUES
     ('reward mineur fer', 'NC'),
+    ('reward mineur bronze', 'NC'),
+    ('reward mineur or', 'NC'),
+    ('reward mineur cobalte', 'NC'),
     ('reward pecheur grenouille', 'NC'),
+    ('reward pecheur calamar', 'NC'),
+    ('reward pecheur carpe dorée', 'NC'),
+    ('reward mineur saumon', 'NC'),
     ('reward combat objet', 'NC'),
     ('reward combat exp', 'NC'),
     ('reward combat gold', 'NC');
@@ -25,9 +31,9 @@ INSERT INTO "level" ("name") VALUES
     ('niveau des métiers');
 
 INSERT INTO "level_character" ("level", "exp_req", "level_id") VALUES
-    (1, 5, 1),
-    (2, 10, 1),
-    (3, 18, 1),
+    (1, 1, 1),
+    (2, 5, 1),
+    (3, 13, 1),
     (4, 25, 1),
     (5, 30, 1),
     (6, 35, 1),
@@ -37,9 +43,9 @@ INSERT INTO "level_character" ("level", "exp_req", "level_id") VALUES
     (10, 55, 1);
 
 INSERT INTO "level_job" ("level", "exp_req", "level_id") VALUES
-    (1, 5, 2),
-    (2, 10, 2),
-    (3, 18, 2),
+    (1, 1, 2),
+    (2, 5, 2),
+    (3, 13, 2),
     (4, 25, 2),
     (5, 30, 2),
     (6, 35, 2),
@@ -50,112 +56,198 @@ INSERT INTO "level_job" ("level", "exp_req", "level_id") VALUES
 
 INSERT INTO "item_type" ("name", "desc") VALUES
     ('poisson', 'objet utilisable et qui se détruit après consommation'),
-    ('equipement', 'objet equipable par les personnages'),
-    ('minerai', 'objet necessaire à la fabrication de d''autre objet');
+    ('ressource', 'objet necessaire à la fabrication de d''autre objet'),
+    ('arme', 'augmente les dégats du personnage'),
+    ('casque', 'augmente la force du personnage'),
+    ('armure', 'augmente l''endurance du personnage'),
+    ('bottes', 'augmente la dextérité du personnage');
 
 INSERT INTO "item" ("name", "item_type_id", "img_path") VALUES
-    ('épée de fer', 2, 'un/lien'),
-    ('hache de pierre', 2, 'un/lienautre'),
-    ('casque d''écaille démonique', 2, 'un/url/haha'),
-    ('grenouille', 1, 'un/liendeux'),
-    ('calamar', 1, 'untrois/lienautre'),
-    ('carpe dorée', 1, 'un/urldepopo/haha'),
-    ('fer', 3, 'un/salien'),
-    ('bois bleu', 3, 'uns/asda'),
-    ('bronze', 3, 'uns/ursasl/haha');
-
+    ('fer', 1, 'lien/de/limage'),
+    ('bronze', 1, 'lien/de/limage'),
+    ('or', 1, 'lien/de/limage'),
+    ('cobalte', 1, 'lien/de/limage'),
+    ('grenouille', 2, 'lien/de/limage'),
+    ('calamar', 2, 'lien/de/limagee'),
+    ('carpe dorée', 2, 'lien/de/limage'),
+    ('saumon', 2, 'lien/de/limage'),
+    ('épée de fer', 3, 'lien/de/limage'),
+    ('casque de fer', 3, 'lien/de/limage'),
+    ('armure de fer', 3, 'lien/de/limage'),
+    ('bottes de fer', 3, 'lien/de/limage'),
+    ('épée de bronze', 3, 'lien/de/limage'),
+    ('casque de bronze', 3, 'lien/de/limage'),
+    ('armure de bronze', 3, 'lien/de/limage'),
+    ('bottes de bronze', 3, 'lien/de/limage'),
+    ('épée d''or', 3, 'lien/de/limage'),
+    ('casque d''or', 3, 'lien/de/limage'),
+    ('armure d''or', 3, 'lien/de/limage'),
+    ('bottes d''or', 3, 'lien/de/limage'),
+    ('épée de cobalte', 3, 'lien/de/limage'),
+    ('casque de cobalte', 3, 'lien/de/limage'),
+    ('armure de cobalte', 3, 'lien/de/limage'),
+    ('bottes de cobalte', 3, 'lien/de/limage');
+    
 INSERT INTO "craft_plan" ("quantity", "component_id") VALUES
-    (3, 7),
-    (20, 7),
-    (20, 8),
-    (15, 9);
+    (1, 1),
+    (2, 1),
+    (12, 1),
+    (10, 1),
+    (1, 2),
+    (2, 2),
+    (12, 2),
+    (10, 2),
+    (1, 3),
+    (2, 3),
+    (12, 3),
+    (10, 3),
+    (1, 4),
+    (2, 4),
+    (12, 4),
+    (10, 4);
+    
 
 INSERT INTO "craft_item" ("item_id", "craft_plan_id") VALUES
-    (1, 1),
-    (3, 2),
-    (3, 3),
-    (3, 4);
+    (9, 1),
+    (10, 2),
+    (11, 3),
+    (12, 4),
+    (13, 5),
+    (14, 6),
+    (15, 7),
+    (16, 8),
+    (17, 9),
+    (18, 10),
+    (19, 11),
+    (20, 12),
+    (21, 13),
+    (22, 14),
+    (23, 15),
+    (24, 16);
 
 INSERT INTO "item_attribute" ("item_id", "value", "attribute_id") VALUES
-    (1, 5, 5),
-    (1, 7, 6),
-    (1, 1, 2),
-    (1, 5, 7),
-    (3, 15, 1),
-    (3, 15, 2),
-    (3, 15, 3),
-    (3, 10, 7),
-    (7, 1, 7),
-    (9, 5, 7);
+    (1, 1, 7),
+    (2, 5, 7),
+    (3, 9, 7),
+    (4, 10, 7),
+    (5, 1, 7),
+    (6, 5, 7),
+    (7, 9, 7),
+    (8, 10, 7),
+    (9, 1, 7),
+    (9, 1, 5),
+    (9, 2, 6),
+    (10, 1, 7),
+    (10, 1, 2),
+    (11, 1, 7),
+    (11, 1, 1),
+    (12, 1, 7),
+    (12, 1, 3),
+    (13, 5, 7),
+    (13, 5, 5),
+    (13, 7, 6),
+    (14, 5, 7),
+    (14, 5, 2),
+    (15, 5, 7),
+    (15, 5, 1),
+    (16, 5, 7),
+    (16, 5, 3),
+    (17, 9, 7),
+    (17, 9, 5),
+    (17, 12, 6),
+    (18, 9, 7),
+    (18, 9, 2),
+    (19, 9, 7),
+    (19, 9, 1),
+    (20, 9, 7),
+    (20, 9, 3),
+    (21, 10, 7),
+    (21, 10, 5),
+    (21, 15, 6),
+    (22, 10, 7),
+    (22, 10, 2),
+    (23, 10, 7),
+    (23, 10, 1),
+    (24, 10, 7),
+    (24, 10, 3);
 
 INSERT INTO "job" ("name", "desc") VALUES
     ('mineur', 'Permet de récupérer des minerais servant de composant de craft'),
     ('pêcheur', 'Permet de récupérer des poissons servant de consommable pour récupérer de la vie');
 
 INSERT INTO "job_reward" (value, reward_id, job_id) VALUES
-    (5, 1, 1),
-    (10, 1, 1),
-    (5, 2, 2),
-    (10, 2, 2);
+    (1, 1, 1),
+    (1, 2, 1),
+    (1, 3, 1),
+    (1, 4, 1),
+    (1, 5, 2),
+    (1, 6, 2),
+    (1, 7, 2),
+    (1, 8, 2);
+    
 
 INSERT INTO "item_reward" ("drop_rate", "reward_id", "item_id") VALUES
     (1, 1, 1),
-    (1, 1, 1),
     (1, 2, 2),
-    (1, 2, 2);
+    (1, 3, 3),
+    (1, 4, 4),
+    (1, 5, 5),
+    (1, 6, 6),
+    (1, 7, 7),
+    (1, 8, 8);
 
-WITH inserted_character AS (
-    INSERT INTO "character" (name, "user_id", img_path) VALUES
-        ('Kingzo', 1, '/unlien/dimage')
-        RETURNING id
-) 
-, ins_char_equipement AS ( 
-	INSERT INTO "character_equipment" (character_id, equipment_slot_id) VALUES
-		((SELECT id
-		 FROM inserted_character
-		),
-		1),
-		((SELECT id
-		 FROM inserted_character
-		),
-		2),
-		((SELECT id
-		 FROM inserted_character
-		),
-		3),
-		((SELECT id
-		 FROM inserted_character
-		),
-		4)
-)
-, ins_char_attribute AS (
-	INSERT INTO "character_attribute" ("value", "attribute_id", "character_id") VALUES
-		(5, 1, 
-		 (SELECT id
-		 FROM inserted_character
-		)),
-		(5, 2, 
-		 (SELECT id
-		 FROM inserted_character
-		)),
-		(5, 3,
-		 (SELECT id
-		 FROM inserted_character
-		)),
-		(5, 4, 
-		 (SELECT id
-		 FROM inserted_character
-		)) 
-)
-, ins_char_job AS (
-	INSERT INTO "character_job" ("character_id", "job_id") VALUES
-		((SELECT id
-		 FROM inserted_character
-		), 1),
-		((SELECT id
-		 FROM inserted_character
-		), 2)
-)
-INSERT INTO inventory ("character_id")
-	SELECT id
-	FROM inserted_character;
+-- WITH inserted_character AS (
+--     INSERT INTO "character" (name, "user_id", img_path) VALUES
+--         ('Kingzo', 1, '/unlien/dimage')
+--         RETURNING id
+-- ) 
+-- , ins_char_equipement AS ( 
+-- 	INSERT INTO "character_equipment" (character_id, equipment_slot_id) VALUES
+-- 		((SELECT id
+-- 		 FROM inserted_character
+-- 		),
+-- 		1),
+-- 		((SELECT id
+-- 		 FROM inserted_character
+-- 		),
+-- 		2),
+-- 		((SELECT id
+-- 		 FROM inserted_character
+-- 		),
+-- 		3),
+-- 		((SELECT id
+-- 		 FROM inserted_character
+-- 		),
+-- 		4)
+-- )
+-- , ins_char_attribute AS (
+-- 	INSERT INTO "character_attribute" ("value", "attribute_id", "character_id") VALUES
+-- 		(5, 1, 
+-- 		 (SELECT id
+-- 		 FROM inserted_character
+-- 		)),
+-- 		(5, 2, 
+-- 		 (SELECT id
+-- 		 FROM inserted_character
+-- 		)),
+-- 		(5, 3,
+-- 		 (SELECT id
+-- 		 FROM inserted_character
+-- 		)),
+-- 		(5, 4, 
+-- 		 (SELECT id
+-- 		 FROM inserted_character
+-- 		)) 
+-- )
+-- , ins_char_job AS (
+-- 	INSERT INTO "character_job" ("character_id", "job_id") VALUES
+-- 		((SELECT id
+-- 		 FROM inserted_character
+-- 		), 1),
+-- 		((SELECT id
+-- 		 FROM inserted_character
+-- 		), 2)
+-- )
+-- INSERT INTO inventory ("character_id")
+-- 	SELECT id
+-- 	FROM inserted_character;

@@ -41,7 +41,7 @@ CREATE TABLE "character" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL UNIQUE,
     "gold" INT NOT NULL DEFAULT 0,
-    "exp" INT NOT NULL DEFAULT 0,
+    "exp" INT NOT NULL DEFAULT 1,
     "user_id" INT NOT NULL REFERENCES "user"(id),
     "img_path" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -117,7 +117,7 @@ CREATE TABLE "job" (
 
 CREATE TABLE "character_job" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "exp" INT NOT NULL DEFAULT 0,
+    "exp" INT NOT NULL DEFAULT 1,
     "character_id" INT NOT NULL REFERENCES "character"(id),
     "job_id" INT NOT NULL REFERENCES "job"(id),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),

@@ -1,9 +1,9 @@
 const User = require('../models/user');
 const jwt = require('../services/jwt');
-const dbCache = require('../services/cache')
+const dbCache = require('../services/cache');
 
 module.exports = {
-    subscribe: async (request, response) => {
+    async subscribe (request, response) {
         try {
             const user = await new User(request.body).save();
             const token = jwt.makeToken(user.id);
@@ -16,7 +16,7 @@ module.exports = {
         }
     },
 
-    login: async (request, response) => {
+    async login (request, response) {
         try {
             const user = await new User(request.body).doLogin();
             const token = jwt.makeToken(user.id);

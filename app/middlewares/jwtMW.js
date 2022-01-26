@@ -1,5 +1,5 @@
 const jwt = require('../services/jwt');
-const dbCache = require('../services/cache')
+const dbCache = require('../services/cache');
 
 module.exports = async (request, response, next) => {
     try {
