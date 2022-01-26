@@ -10,7 +10,7 @@ class Item {
 
     static async findAll() {
         try {
-            const {rows} = await db.query('SELECT * getAllItems()');
+            const {rows} = await db.query('SELECT * FROM getAllItems()');
             return rows.map(row => new Item(row));
         } catch (error) {
             console.log(error);
@@ -20,6 +20,7 @@ class Item {
             throw error
         }
     }
+
 }
 
 module.exports = Item;
