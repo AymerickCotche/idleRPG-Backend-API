@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP FUNCTION getItemCraft();
+DROP FUNCTION getAllItems();
 
 
 COMMIT;

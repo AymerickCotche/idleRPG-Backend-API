@@ -19,6 +19,5 @@ router.get('/character/:id', jwtMW, characterController.findOne);
 router.post('/inventory', jwtMW, inventoryController.addItem);
 router.delete('/inventory', jwtMW, inventoryController.removeItem);
 router.get('/items', itemController.findAll);
-router.get('/items/craft', itemController.findAllCraftable);
 
 module.exports = router;
