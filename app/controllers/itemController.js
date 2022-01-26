@@ -19,7 +19,7 @@ module.exports = {
 
     async findAllCraftable(request, response) {
         try {
-            const items = await Item.findAll();
+            const items = await Item.findAllCraftable();
             const token = jwt.makeToken(request.userId);
             response.setHeader('Authorization', jwt.makeToken(request.userId));
             await dbCache.set("user-0"+request.userId, token, {EX: 4*60*60, NX: false});
