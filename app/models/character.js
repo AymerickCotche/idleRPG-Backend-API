@@ -8,9 +8,9 @@ class Character {
         }
     }
 
-    static async findOne(id) {
+    static async findOne() {
         try {
-            const {rows} = await db.query('SELECT * FROM getCharacter($1);', [Number(id)]);
+            const {rows} = await db.query('SELECT * FROM getCharacter($1);', [Number(this.id)]);
             if (rows[0]) {
                 return new Character(rows[0]);
             }

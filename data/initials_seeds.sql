@@ -5,7 +5,8 @@ INSERT INTO "attribute" ("name", "desc") VALUES
     ('intelligence', 'Influe sur les dégats magiques'),
     ('degat_min', 'Dégat minimum qu''infligera l''arme'),
     ('degat_max', 'Dégat maximum q''infligera une arme'),
-    ('niveau', 'Niveau nécessaire pour intéragir avec l''objet');
+    ('niveau', 'Niveau nécessaire pour intéragir avec l''objet'),
+    ('points', 'Points de caractéristique disponible');
 
 INSERT INTO "equipment_slot" ("name") VALUES
     ('tête'),
