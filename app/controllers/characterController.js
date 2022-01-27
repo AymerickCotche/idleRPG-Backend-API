@@ -6,14 +6,15 @@ module.exports = {
 
     async findOne (request, response) {
         try {
-            const id = Number(request.params.id);
+            const user = response.locals.user;
+            const id = Number(user.id);
             const character = await Character.findOne(id);
             if (!character)
                 return response.status(404).json(`No character found for the user with id ${id}`);
             const token = jwt.makeToken(request.userId);
             response.setHeader('Authorization', jwt.makeToken(request.userId));
             await dbCache.set("user-0"+request.userId, token, {EX: 4*60*60, NX: false});
-            response.status(200).json(character);
+            response.status(200).json({user, character});
         } catch (error) {
             console.log(error);
             response.status(500).json(error.message)

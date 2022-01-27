@@ -18,7 +18,6 @@ module.exports = {
     async createCharacter (request, response) {
         try {
             response.locals.user.img_path = 'une/image';
-            console.log(response.locals.user);
             const instance = await new Character(response.locals.user);
             const character = await instance.create();
             const token = jwt.makeToken(request.userId);
