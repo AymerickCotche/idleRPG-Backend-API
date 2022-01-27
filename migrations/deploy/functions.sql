@@ -47,6 +47,10 @@ $$
 			(5, 4, 
 			 (SELECT id
 			 FROM inserted_character
+			)),
+			(0, 8, 
+			 (SELECT id
+			 FROM inserted_character
 			)) 
 	)
 	, ins_char_job AS (

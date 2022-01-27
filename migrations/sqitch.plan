@@ -4,3 +4,5 @@
 init 2022-01-19T09:51:30Z a6kc4e <a.cotche@rt-iut.re> # Initialisation de la base
 functions 2022-01-26T13:06:56Z a6kc4e <a.cotche@rt-iut.re> # Ajout des fonctions de creation et récupération de personnage
 getAllItems 2022-01-26T14:07:53Z a6kc4e <a.cotche@rt-iut.re> # Ajout fonction retournant tout les objets et les ingrédients de craft
+updateCharAtt 2022-01-27T14:02:23Z a6kc4e <a.cotche@rt-iut.re> # Function to increment attribute's character
+updateCharEqu 2022-01-27T21:00:14Z a6kc4e <a.cotche@rt-iut.re> # Function to update character's equipment

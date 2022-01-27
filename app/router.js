@@ -5,7 +5,8 @@ const jwtMW = require('./middlewares/jwtMW');
 const tempMW = require('./middlewares/tempMW');
 const inventoryController = require('./controllers/inventoryController');
 const itemController = require('./controllers/itemController');
-const loginMW = require('./middlewares/loginMW')
+const loginMW = require('./middlewares/loginMW');
+const charAttributeController = require('./controllers/charAttributeController');
 
 
 const router = Router();
@@ -20,5 +21,7 @@ router.get('/character/:id', characterController.findOne);
 router.post('/inventory', jwtMW, inventoryController.addItem);
 router.delete('/inventory', jwtMW, inventoryController.removeItem);
 router.get('/items', itemController.findAll);
+
+router.patch('/attribute', charAttributeController.updateIncrement);
 
 module.exports = router;
