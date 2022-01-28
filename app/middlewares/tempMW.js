@@ -20,9 +20,9 @@ module.exports = {
             response.locals.user.img_path = 'une/image';
             const instance = await new Character(response.locals.user);
             const character = await instance.create();
-            const token = jwt.makeToken(request.userId);
-            response.setHeader('Authorization', jwt.makeToken(request.userId));
-            await dbCache.set("user-0"+request.userId, token, {EX: 4*60*60, NX: false});
+            const token = jwt.makeToken(response.locals.user.id);
+            response.setHeader('Authorization', token);
+            await dbCache.set("user-0"+response.locals.user.id, token, {EX: 4*60*60, NX: false});
             response.status(201).json(character);
         } catch (error) {
             console.log(error);
