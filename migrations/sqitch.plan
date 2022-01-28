@@ -6,3 +6,4 @@ functions 2022-01-26T13:06:56Z a6kc4e <a.cotche@rt-iut.re> # Ajout des fonctions
 getAllItems 2022-01-26T14:07:53Z a6kc4e <a.cotche@rt-iut.re> # Ajout fonction retournant tout les objets et les ingrédients de craft
 updateCharAtt 2022-01-27T14:02:23Z a6kc4e <a.cotche@rt-iut.re> # Function to increment attribute's character
 updateCharEqu 2022-01-27T21:00:14Z a6kc4e <a.cotche@rt-iut.re> # Function to update character's equipment
+createTestCharacter 2022-01-28T08:36:45Z a6kc4e <a.cotche@rt-iut.re> # function to add testCharacter
