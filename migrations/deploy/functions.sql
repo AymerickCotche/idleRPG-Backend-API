@@ -91,13 +91,30 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 			JOIN attribute ON attribute.id = character_attribute.attribute_id
 			),
 			char_equ AS
-			(SELECT character_equipment.id, character_equipment.character_id, equipment_slot.name, character_equipment.item_id AS equipment, item.name AS item_name FROM character_equipment
-			JOIN equipment_slot ON equipment_slot.id = character_equipment.equipment_slot_id
+			(WITH item_att AS
+				(SELECT item_attribute.id, item_attribute.value, item_attribute.item_id, attribute.name FROM item_attribute
+					LEFT JOIN attribute ON attribute.id = item_attribute.attribute_id 
+				)
+			SELECT character_equipment.id, character_equipment.character_id, equipment_slot.id AS slot_id, equipment_slot.name AS slot_name, character_equipment.item_id, item.name AS item_name,
+			jsonb_agg(DISTINCT to_jsonb(item_att) - 'item_id') AS attributes
+			FROM character_equipment
+			LEFT JOIN equipment_slot ON equipment_slot.id = character_equipment.equipment_slot_id
 			LEFT JOIN item ON item.id = character_equipment.item_id
+			LEFT JOIN item_att  ON item_att.item_id = item.id
+			GROUP BY character_equipment.id, equipment_slot.id, item.name
 			),
 			char_inv AS
-			(SELECT inventory.id, inventory.character_id, inventory.item_id, item.name FROM inventory
+			(WITH item_att AS
+				(SELECT item_attribute.id, item_attribute.value, item_attribute.item_id, attribute.name FROM item_attribute
+					JOIN attribute ON attribute.id = item_attribute.attribute_id 
+				)
+			SELECT inventory.id, inventory.character_id, inventory.item_id, item.name, item.item_type_id AS type_id, item_type.name AS type_name,
+			jsonb_agg(DISTINCT to_jsonb(item_att) - 'item_id') AS attributes
+			FROM inventory
 			LEFT JOIN item ON item.id = inventory.item_id
+			JOIN item_type ON item_type.id = item.item_type_id
+			JOIN item_att  ON item_att.item_id = item.id
+			GROUP BY inventory.id, item.name, item.item_type_id, item_type.name
 			),
 			char_job AS
 			(SELECT job.id, job.name, character_job.character_id, character_job.exp,

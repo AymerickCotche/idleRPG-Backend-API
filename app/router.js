@@ -7,6 +7,7 @@ const inventoryController = require('./controllers/inventoryController');
 const itemController = require('./controllers/itemController');
 const loginMW = require('./middlewares/loginMW');
 const charAttributeController = require('./controllers/charAttributeController');
+const charEquipmentController = require('./controllers/charEquipment.Controller');
 
 
 const router = Router();
@@ -22,6 +23,10 @@ router.post('/inventory', jwtMW, inventoryController.addItem);
 router.delete('/inventory', jwtMW, inventoryController.removeItem);
 router.get('/items', itemController.findAll);
 
-router.patch('/attribute', charAttributeController.updateIncrement);
+router.patch('/attribute/augment', jwtMW, charAttributeController.updateIncrement, characterController.findOne);
+
+router.patch('/equipment/unequipItem', jwtMW, charEquipmentController.unequipItem, characterController.findOne);
+
+router.patch('/equipment/equipItem', jwtMW, charEquipmentController.equipItem, characterController.findOne);
 
 module.exports = router;

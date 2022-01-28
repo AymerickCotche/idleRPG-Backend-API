@@ -11,9 +11,10 @@ module.exports = {
             const character = await Character.findOne(id);
             if (!character)
                 return response.status(404).json(`No character found for the user with id ${id}`);
-            const token = jwt.makeToken(request.userId);
-            response.setHeader('Authorization', jwt.makeToken(request.userId));
-            await dbCache.set("user-0"+request.userId, token, {EX: 4*60*60, NX: false});
+            const token = jwt.makeToken(id);
+            console.log(request.userId);
+            response.setHeader('Authorization', token);
+            await dbCache.set("user-0"+id, token, {EX: 4*60*60, NX: false});
             response.status(200).json({user, character});
         } catch (error) {
             console.log(error);
