@@ -7,7 +7,9 @@ const inventoryController = require('./controllers/inventoryController');
 const itemController = require('./controllers/itemController');
 const loginMW = require('./middlewares/loginMW');
 const charAttributeController = require('./controllers/charAttributeController');
-const charEquipmentController = require('./controllers/charEquipment.Controller');
+const charEquipmentController = require('./controllers/charEquipmentController');
+const inventoryCheckMW = require('./middlewares/inventoryCheckMW');
+const charEquCheckMW = require('./middlewares/charEquCheckMW');
 
 
 const router = Router();
@@ -21,12 +23,15 @@ router.get('/character/:id', characterController.findOne);
 
 router.post('/inventory', jwtMW, inventoryController.addItem);
 router.delete('/inventory', jwtMW, inventoryController.removeItem);
+router.post('/inventory/addItem', jwtMW, inventoryCheckMW.checkExists, inventoryController.save);
 router.get('/items', itemController.findAll);
 
 router.patch('/attribute/augment', jwtMW, charAttributeController.updateIncrement, characterController.findOne);
 
 router.patch('/equipment/unequipItem', jwtMW, charEquipmentController.unequipItem, characterController.findOne);
 
-router.patch('/equipment/equipItem', jwtMW, charEquipmentController.equipItem, characterController.findOne);
+// router.patch('/equipment/equipItem', jwtMW, charEquipmentController.equipItem, characterController.findOne);
+
+router.patch('/equipment/equipItem', jwtMW, charEquCheckMW.checkExists, charEquCheckMW.getOldItemId, inventoryCheckMW.checkExists, inventoryController.save, charEquipmentController.equipItem, inventoryController.save);
 
 module.exports = router;

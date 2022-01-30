@@ -53,18 +53,14 @@ $$
 			 FROM inserted_character
 			)) 
 	)
-	, ins_char_job AS (
-		INSERT INTO "character_job" ("character_id", "job_id") VALUES
-			((SELECT id
-			 FROM inserted_character
-			), 1),
-			((SELECT id
-			 FROM inserted_character
-			), 2)
-	)
-	INSERT INTO inventory ("character_id")
-		SELECT id
-		FROM inserted_character;
+	INSERT INTO "character_job" ("character_id", "job_id") VALUES
+		((SELECT id
+			FROM inserted_character
+		), 1),
+		((SELECT id
+			FROM inserted_character
+		), 2)
+	
 $$
 LANGUAGE sql;
 
@@ -108,13 +104,13 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 				(SELECT item_attribute.id, item_attribute.value, item_attribute.item_id, attribute.name FROM item_attribute
 					JOIN attribute ON attribute.id = item_attribute.attribute_id 
 				)
-			SELECT inventory.id, inventory.character_id, inventory.item_id, item.name, item.item_type_id AS type_id, item_type.name AS type_name,
+			SELECT inventory.character_id, inventory.item_id, item.name, item.item_type_id AS type_id, item_type.name AS type_name, inventory.quantity,
 			jsonb_agg(DISTINCT to_jsonb(item_att) - 'item_id') AS attributes
 			FROM inventory
 			LEFT JOIN item ON item.id = inventory.item_id
 			JOIN item_type ON item_type.id = item.item_type_id
 			JOIN item_att  ON item_att.item_id = item.id
-			GROUP BY inventory.id, item.name, item.item_type_id, item_type.name
+			GROUP BY inventory.character_id, inventory.item_id, item.name, item.item_type_id, item_type.name
 			),
 			char_job AS
 			(SELECT job.id, job.name, character_job.character_id, character_job.exp,

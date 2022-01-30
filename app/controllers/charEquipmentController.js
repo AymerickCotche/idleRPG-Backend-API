@@ -4,11 +4,9 @@ const dbCache = require('../services/cache');
 
 module.exports = {
 
-
     async unequipItem (request, response, next) {
         try {
             const charEquipment = new CharEquipment(request.body).unequipItem();
-            response.locals.user = request.body.user;
             next();
         } catch (error) {
             console.log(error);
@@ -19,7 +17,9 @@ module.exports = {
     async equipItem (request, response, next) {
         try {
             const charEquipment = new CharEquipment(request.body).equipItem();
-            response.locals.user = request.body.user;
+            request.body.itemId = request.body.newItemId;
+            request.body.quantity = -1
+            delete response.locals.nothingToDo;
             next();
         } catch (error) {
             console.log(error);

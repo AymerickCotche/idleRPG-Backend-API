@@ -143,9 +143,10 @@ CREATE TABLE "character_attribute" (
 );
 
 CREATE TABLE "inventory" (
-    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "character_id" INT NOT NULL REFERENCES "character"(id),
-    "item_id" INT REFERENCES "item"(id),
+    "item_id" INT NOT NULL REFERENCES "item"(id),
+    "quantity" INT NOT NULL,
+    CONSTRAINT "inventory_pkey" PRIMARY KEY ("character_id", "item_id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

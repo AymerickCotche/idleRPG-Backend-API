@@ -62,139 +62,31 @@ $$
 			 FROM inserted_character
 			), 2)
 	)
-	INSERT INTO inventory ("character_id", "item_id") VALUES
+	INSERT INTO inventory ("character_id", "item_id", "quantity") VALUES
         ((SELECT id
 		FROM inserted_character
-        ), 13),
+        ), 13, 1),
         ((SELECT id
 		FROM inserted_character
-        ), 14),
+        ), 14, 1),
         ((SELECT id
 		FROM inserted_character
-        ), 15),
+        ), 15, 1),
         ((SELECT id
 		FROM inserted_character
-        ), 16),
+        ), 16, 1),
         ((SELECT id
 		FROM inserted_character
-        ), 1),
+        ), 1, 10),
         ((SELECT id
 		FROM inserted_character
-        ), 1),
+        ), 2, 10),
         ((SELECT id
 		FROM inserted_character
-        ), 1),
+        ), 5, 10),
         ((SELECT id
 		FROM inserted_character
-        ), 1),
-        ((SELECT id
-		FROM inserted_character
-        ), 1),
-        ((SELECT id
-		FROM inserted_character
-        ), 1),
-        ((SELECT id
-		FROM inserted_character
-        ), 1),
-        ((SELECT id
-		FROM inserted_character
-        ), 1),
-        ((SELECT id
-		FROM inserted_character
-        ), 1),
-        ((SELECT id
-		FROM inserted_character
-        ), 1),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 2),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 5),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6),
-        ((SELECT id
-		FROM inserted_character
-        ), 6);
+        ), 6, 10);
 $$
 LANGUAGE sql;
 
