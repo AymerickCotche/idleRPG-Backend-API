@@ -10,3 +10,4 @@ getAllItems 2022-01-28T08:36:45Z a6kc4e <a.cotche@rt-iut.re> # function to add t
 unequipItem 2022-01-28T10:44:21Z a6kc4e <a.cotche@rt-iut.re> # function to take of item from character's equipments
 charEquFunctions 2022-01-29T15:36:47Z a6kc4e <a.cotche@rt-iut.re> # Function to update character's equipment
 entityfunctions 2022-01-31T13:30:36Z a6kc4e <a.cotche@rt-iut.re> # functions for entities
+charJobFunctions 2022-01-31T20:21:35Z a6kc4e <a.cotche@rt-iut.re> # functions to make job working

@@ -16,6 +16,7 @@ module.exports = {
                 request.body.quantity = 1;
                 next();
             } else {
+                if(request.body.plusExp) response.locals.nothingToDo = false;
                 const exists = await new Inventory(request.body).checkExists();
                 response.locals.exists = exists;
                 next();

@@ -6,7 +6,7 @@ module.exports = {
 
     async unequipItem (request, response, next) {
         try {
-            const charEquipment = new CharEquipment(request.body).unequipItem();
+            const charEquipment = await new CharEquipment(request.body).unequipItem();
             request.body.quantity = 1;
             next();
         } catch (error) {
