@@ -16,8 +16,8 @@ const entityController = require('./controllers/entityController');
 const router = Router();
 
 // router.post('/user/subscribe', userController.subscribe);
-router.post('/user/subscribe', tempMW.subscribeUser, tempMW.createCharacter);
-router.post('/user/login', loginMW.login,  characterController.findOne);
+router.post('/user/subscribe', tempMW.subscribeUser, itemController.findAll, entityController.findAll, tempMW.createCharacter);
+router.post('/user/login', loginMW.login, itemController.findAll, entityController.findAll, characterController.findOne);
 router.get('/user/infos', jwtMW, userController.getInfos);
 
 router.get('/character/:id', characterController.findOne);
