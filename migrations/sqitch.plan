@@ -9,3 +9,4 @@ inventoryFunctions 2022-01-27T21:00:14Z a6kc4e <a.cotche@rt-iut.re> # function t
 getAllItems 2022-01-28T08:36:45Z a6kc4e <a.cotche@rt-iut.re> # function to add testCharacter
 unequipItem 2022-01-28T10:44:21Z a6kc4e <a.cotche@rt-iut.re> # function to take of item from character's equipments
 charEquFunctions 2022-01-29T15:36:47Z a6kc4e <a.cotche@rt-iut.re> # Function to update character's equipment
+entityfunctions 2022-01-31T13:30:36Z a6kc4e <a.cotche@rt-iut.re> # functions for entities

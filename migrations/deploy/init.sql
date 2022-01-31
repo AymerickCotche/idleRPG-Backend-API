@@ -42,6 +42,7 @@ CREATE TABLE "character" (
     "name" TEXT NOT NULL UNIQUE,
     "gold" INT NOT NULL DEFAULT 0,
     "exp" INT NOT NULL DEFAULT 1,
+    "last_entity_fought" INT NOT NULL DEFAULT 0,
     "user_id" INT NOT NULL REFERENCES "user"(id),
     "img_path" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -156,6 +157,8 @@ CREATE TABLE "entity" (
     "name" TEXT NOT NULL UNIQUE,
     "level" INT NOT NULL,
     "image_url" TEXT NOT NULL,
+    "reward_exp" INT NOT NULL,
+    "reward_gold" INT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -197,9 +200,10 @@ CREATE TABLE "item_reward" (
 
 CREATE TABLE "entity_reward_item" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "value" INT NOT NULL,
-    "reward_id" INT NOT NULL REFERENCES "reward"(id),
     "entity_id" INT NOT NULL REFERENCES "entity"(id),
+    "quantity" INT NOT NULL,
+    "item_id" INT NOT NULL REFERENCES "item"(id),
+    "drop_rate" DECIMAL NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

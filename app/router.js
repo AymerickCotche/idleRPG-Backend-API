@@ -10,6 +10,7 @@ const charAttributeController = require('./controllers/charAttributeController')
 const charEquipmentController = require('./controllers/charEquipmentController');
 const inventoryCheckMW = require('./middlewares/inventoryCheckMW');
 const charEquCheckMW = require('./middlewares/charEquCheckMW');
+const entityController = require('./controllers/entityController');
 
 
 const router = Router();
@@ -33,5 +34,7 @@ router.patch('/equipment/unequipItem', jwtMW, inventoryCheckMW.checkExists, char
 // router.patch('/equipment/equipItem', jwtMW, charEquipmentController.equipItem, characterController.findOne);
 
 router.patch('/equipment/equipItem', jwtMW, charEquCheckMW.checkExists, charEquCheckMW.getOldItemId, inventoryCheckMW.checkExists, inventoryController.save, charEquipmentController.equipItem, inventoryCheckMW.checkExists, inventoryController.save);
+
+router.get('/entities', entityController.findAll);
 
 module.exports = router;

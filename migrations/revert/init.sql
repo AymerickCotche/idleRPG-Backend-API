@@ -4,7 +4,7 @@ BEGIN;
 
 DROP TABLE "shop";
 
-DROP TABLE "entity_reward";
+DROP TABLE "entity_reward_item";
 
 DROP TABLE "item_reward";
 

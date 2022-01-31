@@ -228,9 +228,9 @@ INSERT INTO "item_reward" ("drop_rate", "reward_id", "item_id") VALUES
     (1, 8, 8);
 
 INSERT INTO "entity" ("name", "level", "image_url", "reward_exp", "reward_gold") VALUES
-    ("LeMonstreDu01", 1, 'monster1', 3, 50),
-    ("LeMonstreDu02", 5, 'monster2', 5, 100),
-    ("LeMonstreDu03", 9, 'monster3', 10, 200);
+    ('LeMonstreDu01', 1, 'monster1', 3, 50),
+    ('LeMonstreDu02', 5, 'monster2', 5, 100),
+    ('LeMonstreDu03', 9, 'monster3', 10, 200);
 
 INSERT INTO "entity_attribute" ("value", "attribute_id", "entity_id") VALUES
     (1, 1, 1),
@@ -246,7 +246,7 @@ INSERT INTO "entity_attribute" ("value", "attribute_id", "entity_id") VALUES
 INSERT INTO "entity_reward_item" ("entity_id", "quantity", "item_id", "drop_rate") VALUES
     (1, 5, 1, 1),
     (1, 8, 1, 0.8),
-    (1, 1, 13, 0.4);
+    (1, 1, 13, 0.4),
     (2, 5, 2, 1),
     (2, 8, 2, 0.8),
     (2, 1, 17, 0.4),

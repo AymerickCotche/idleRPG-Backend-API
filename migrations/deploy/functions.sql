@@ -72,6 +72,7 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 		gold INT,
 		exp INT,
 		user_id INT,
+		last_entity_fought INT,
 		img_path TEXT,
 		created_at TIMESTAMPTZ,
 		updated_at TIMESTAMPTZ,
