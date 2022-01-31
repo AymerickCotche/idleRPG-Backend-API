@@ -195,7 +195,7 @@ CREATE TABLE "item_reward" (
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE "entity_reward" (
+CREATE TABLE "entity_reward_item" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "value" INT NOT NULL,
     "reward_id" INT NOT NULL REFERENCES "reward"(id),

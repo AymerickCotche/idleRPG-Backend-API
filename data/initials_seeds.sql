@@ -227,6 +227,41 @@ INSERT INTO "item_reward" ("drop_rate", "reward_id", "item_id") VALUES
     (1, 7, 7),
     (1, 8, 8);
 
+INSERT INTO "entity" ("name", "level", "image_url", "reward_exp", "reward_gold") VALUES
+    ("LeMonstreDu01", 1, 'monster1', 3, 50),
+    ("LeMonstreDu02", 5, 'monster2', 5, 100),
+    ("LeMonstreDu03", 9, 'monster3', 10, 200);
+
+INSERT INTO "entity_attribute" ("value", "attribute_id", "entity_id") VALUES
+    (1, 1, 1),
+    (1, 2, 1),
+    (1, 3, 1),
+    (5, 1, 2),
+    (5, 2, 2),
+    (5, 3, 2),
+    (9, 1, 3),
+    (9, 2, 3),
+    (9, 3, 3);
+
+INSERT INTO "entity_reward_item" ("entity_id", "quantity", "item_id", "drop_rate") VALUES
+    (1, 5, 1, 1),
+    (1, 8, 1, 0.8),
+    (1, 1, 13, 0.4);
+    (2, 5, 2, 1),
+    (2, 8, 2, 0.8),
+    (2, 1, 17, 0.4),
+    (3, 5, 6, 1),
+    (3, 8, 7, 0.8),
+    (3, 1, 20, 0.4);
+
+
+-- INSERT INTO "item_reward" ("drop_rate", "reward_id", "item_id") VALUES
+--     (1, 10, 1),
+--     (1, 11, 1),
+--     (5, 10, 2),
+--     (100, 11, 2),
+--     (10, 10, 3),
+--     (200, 11, 3);
 -- WITH inserted_character AS (
 --     INSERT INTO "character" (name, "user_id", img_path) VALUES
 --         ('Kingzo', 1, '/unlien/dimage')
