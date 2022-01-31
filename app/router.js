@@ -26,12 +26,12 @@ router.delete('/inventory', jwtMW, inventoryController.removeItem);
 router.post('/inventory/addItem', jwtMW, inventoryCheckMW.checkExists, inventoryController.save);
 router.get('/items', itemController.findAll);
 
-router.patch('/attribute/augment', jwtMW, charAttributeController.updateIncrement, characterController.findOne);
+router.patch('/attribute/augment', jwtMW, charAttributeController.updateIncrement);
 
-router.patch('/equipment/unequipItem', jwtMW, charEquipmentController.unequipItem, characterController.findOne);
+router.patch('/equipment/unequipItem', jwtMW, inventoryCheckMW.checkExists, charEquipmentController.unequipItem, inventoryController.save);
 
 // router.patch('/equipment/equipItem', jwtMW, charEquipmentController.equipItem, characterController.findOne);
 
-router.patch('/equipment/equipItem', jwtMW, charEquCheckMW.checkExists, charEquCheckMW.getOldItemId, inventoryCheckMW.checkExists, inventoryController.save, charEquipmentController.equipItem, inventoryController.save);
+router.patch('/equipment/equipItem', jwtMW, charEquCheckMW.checkExists, charEquCheckMW.getOldItemId, inventoryCheckMW.checkExists, inventoryController.save, charEquipmentController.equipItem, inventoryCheckMW.checkExists, inventoryController.save);
 
 module.exports = router;

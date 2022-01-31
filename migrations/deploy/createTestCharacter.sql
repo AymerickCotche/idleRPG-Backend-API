@@ -63,6 +63,18 @@ $$
 			), 2)
 	)
 	INSERT INTO inventory ("character_id", "item_id", "quantity") VALUES
+		((SELECT id
+		FROM inserted_character
+        ), 9, 0),
+        ((SELECT id
+		FROM inserted_character
+        ), 10, 0),
+        ((SELECT id
+		FROM inserted_character
+        ), 11, 0),
+        ((SELECT id
+		FROM inserted_character
+        ), 12, 0),
         ((SELECT id
 		FROM inserted_character
         ), 13, 1),
