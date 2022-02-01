@@ -21,6 +21,8 @@ router.post('/user/subscribe', tempMW.subscribeUser, entityController.findAll, t
 router.post('/user/login', loginMW.login, entityController.findAll, characterController.findOne);
 router.get('/user/infos', jwtMW, userController.getInfos);
 
+router.post('/user/checklogin', jwtMW, entityController.findAll, characterController.findOne)
+
 router.get('/character/:id', characterController.findOne);
 
 router.post('/inventory', jwtMW, inventoryController.addItem);
@@ -39,5 +41,9 @@ router.patch('/equipment/equipItem', jwtMW, charEquCheckMW.checkExists, charEquC
 router.get('/entities', entityController.findAll);
 
 router.post('/job', inventoryCheckMW.checkExists, inventoryController.save, charJobController.updateExp, charJobController.getJobLevelCharacter)
+
+
+//route à modifier plus tard :
+router
 
 module.exports = router;

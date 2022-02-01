@@ -9,7 +9,9 @@ module.exports = {
             const user = response.locals.user;
             const items = response.locals.items;
             const entities = response.locals.entities;
-            const id = Number(user.id);
+            let id;
+            if (user) id = Number(user.id);
+            if (request.userId) id = request.userId;
             const character = await Character.findOne(id);
             if (!character)
                 return response.status(404).json(`No character found for the user with id ${id}`);
