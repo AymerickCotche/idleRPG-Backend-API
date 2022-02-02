@@ -57,5 +57,15 @@ module.exports = {
             console.log(error);
             response.status(500).json(error.message);
         }
-    }
+    },
+
+    async updateComponent (request, response, next) {
+        try {
+           await new Inventory(request.body).updateComponent();
+           next();         
+        } catch (error) {
+            console.log(error);
+            response.status(500).json(error.message);
+        }
+    },
 }

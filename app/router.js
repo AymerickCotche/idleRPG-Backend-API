@@ -44,6 +44,8 @@ router.post('/job', jwtMW, inventoryCheckMW.checkExists, inventoryController.sav
 
 router.patch('/shop', jwtMW, characterController.updateGold, inventoryCheckMW.checkExists, inventoryController.save)
 
+router.patch('/craft', jwtMW, inventoryController.updateComponent, inventoryCheckMW.checkExists, inventoryController.save)
+
 
 //route à modifier plus tard :
 router

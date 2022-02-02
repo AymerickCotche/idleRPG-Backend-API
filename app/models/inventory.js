@@ -68,6 +68,18 @@ class Inventory {
             throw error
         }
     }
+
+    async updateComponent() {
+        try {
+            return await db.query('SELECT * FROM update_inventory($1, $2, $3)', [this.characterId, this.componentId, this.componentQuantity]);
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
 }
 
 module.exports = Inventory;
