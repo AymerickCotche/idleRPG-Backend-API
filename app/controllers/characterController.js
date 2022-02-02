@@ -39,5 +39,15 @@ module.exports = {
             console.log(error);
             response.status(500).json(error.message)
         }
+    },
+
+    async updateGold (request, response, next) {
+        try {
+            const character = await new Character(request.body).updateGold();
+            next();
+        } catch (error) {
+            console.log(error);
+            response.status(500).json(error.message)
+        }
     }
 }

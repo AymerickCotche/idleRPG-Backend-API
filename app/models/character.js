@@ -37,6 +37,19 @@ class Character {
             throw error
         }
     }
+
+    async updateGold() {
+        try {
+            await db.query('UPDATE character SET gold = gold + $1 WHERE id = $2', [this.goldValue, this.characterId]);
+            return null;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
 }
 
 module.exports = Character;

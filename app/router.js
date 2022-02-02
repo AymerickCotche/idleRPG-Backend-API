@@ -40,7 +40,9 @@ router.patch('/equipment/equipItem', jwtMW, charEquCheckMW.checkExists, charEquC
 
 router.get('/entities', entityController.findAll);
 
-router.post('/job', inventoryCheckMW.checkExists, inventoryController.save, charJobController.updateExp, charJobController.getJobLevelCharacter)
+router.post('/job', inventoryCheckMW.checkExists, inventoryController.save, charJobController.updateExp, charJobController.getJobLevelCharacter);
+
+router.patch('/shop', characterController.updateGold, inventoryCheckMW.checkExists, inventoryController.save)
 
 
 //route à modifier plus tard :
