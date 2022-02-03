@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP FUNCTION updateAttribute(id_attribute INT, id_character INT);
+DROP FUNCTION updateAttribute(id_attribute INT, id_character INT, quantity INT);
 
 COMMIT;
