@@ -51,7 +51,11 @@ $$
 			(0, 8, 
 			 (SELECT id
 			 FROM inserted_character
-			)) 
+			)),
+			(100, 11, 
+			 (SELECT id
+			 FROM inserted_character
+			))
 	)
 	INSERT INTO "character_job" ("character_id", "job_id") VALUES
 		((SELECT id
