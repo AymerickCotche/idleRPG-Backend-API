@@ -38,7 +38,7 @@ router.patch('/equipment/unequipItem', jwtMW, inventoryCheckMW.checkExists, char
 
 router.patch('/equipment/equipItem', jwtMW, charEquCheckMW.checkExists, charEquCheckMW.getOldItemId, inventoryCheckMW.checkExists, inventoryController.save, charEquipmentController.equipItem, inventoryCheckMW.checkExists, inventoryController.save);
 
-router.get('/entities', entityController.findAll);
+router.get('/entitiesa', entityController.findAll);
 
 router.post('/job', jwtMW, inventoryCheckMW.checkExists, inventoryController.save, charJobController.updateExp, charJobController.getJobLevelCharacter);
 
