@@ -10,7 +10,7 @@ class CharAttribute {
 
     async updateIncrement() {
         try {
-            await db.query('SELECT * FROM updateAttribute($1, $2)', [Number(this.attributeId), Number(this.characterId)]);
+            await db.query('SELECT * FROM updateAttribute($1, $2, $3)', [Number(this.attributeId), Number(this.characterId), Number(this.quantity)]);
         } catch (error) {
             console.log(error);
             if (error.detail) {
