@@ -43,7 +43,7 @@ router.patch('/shop', jwtMW, characterController.updateGold, inventoryCheckMW.ch
 
 router.patch('/craft', jwtMW, inventoryController.updateComponent, inventoryCheckMW.checkExists, inventoryController.save);
 
-router.patch('/fight', jwtMW, charAttributeController.updateHp, characterController.updateLastFought, characterController.updateGold, characterController.updateExp, characterController.getLevelCharacter, inventoryCheckMW.checkExists, inventoryController.save);
+router.patch('/fight', charAttributeController.updateHp, characterController.updateLastFought, characterController.updateGold, characterController.updateExp, characterController.getLevelCharacter, inventoryCheckMW.checkExists, inventoryController.save);
 
 router.patch('/useCons', jwtMW, charAttributeController.augmentHp, inventoryCheckMW.checkExists, inventoryController.save);
 

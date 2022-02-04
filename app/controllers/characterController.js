@@ -79,7 +79,8 @@ module.exports = {
                 const token = jwt.makeToken(request.userId);
                 response.setHeader('Authorization', jwt.makeToken(request.userId));
                 await dbCache.set("user-0"+request.userId, token, {EX: 4*60*60, NX: false});
-                return response.status(204).json({'level': level});
+                console.log(level);
+                return response.status(200).json(level);
             }
             const level = await new Character(request.body).getLevelCharacter();
             response.locals.characterLevel = level;
