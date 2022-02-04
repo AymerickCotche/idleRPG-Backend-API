@@ -12,6 +12,7 @@ const inventoryCheckMW = require('./middlewares/inventoryCheckMW');
 const charEquCheckMW = require('./middlewares/charEquCheckMW');
 const entityController = require('./controllers/entityController');
 const charJobController = require('./controllers/charJobController');
+const { updateExp } = require('./controllers/characterController');
 
 
 const router = Router();
@@ -42,9 +43,13 @@ router.get('/entitiesa', entityController.findAll);
 
 router.post('/job', jwtMW, inventoryCheckMW.checkExists, inventoryController.save, charJobController.updateExp, charJobController.getJobLevelCharacter);
 
-router.patch('/shop', jwtMW, characterController.updateGold, inventoryCheckMW.checkExists, inventoryController.save)
+router.patch('/shop', jwtMW, characterController.updateGold, inventoryCheckMW.checkExists, inventoryController.save);
 
-router.patch('/craft', jwtMW, inventoryController.updateComponent, inventoryCheckMW.checkExists, inventoryController.save)
+router.patch('/craft', jwtMW, inventoryController.updateComponent, inventoryCheckMW.checkExists, inventoryController.save);
+
+router.patch('/fight', charAttributeController.updateHp, characterController.updateLastFought, characterController.updateExp, characterController.getLevelCharacter, inventoryCheckMW.checkExists, inventoryController.save);
+
+router.patch('/useCons', charAttributeController.augmentHp, inventoryCheckMW.checkExists, inventoryController.save);
 
 
 //route à modifier plus tard :

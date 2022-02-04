@@ -50,6 +50,46 @@ class Character {
             throw error
         }
     }
+
+    async updateExp() {
+        try {
+            await db.query('UPDATE character SET exp = exp + $1 WHERE id = $2', [this.expValue, this.characterId]);
+            return null;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
+
+    async updateLastFought() {
+        try {
+            await db.query('UPDATE character SET last_entity_fought = last_entity_fought + 1 WHERE id = $1', [this.characterId]);
+            return null;
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
+
+    async getLevelCharacter() {
+        try {
+            const {rows} = await db.query('SELECT * FROM getLevelCharacter($1)', [this.characterId]);
+            return rows[0];
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
+
 }
 
 module.exports = Character;

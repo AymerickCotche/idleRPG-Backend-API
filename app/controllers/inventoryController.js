@@ -20,10 +20,19 @@ module.exports = {
                 await dbCache.set("user-0"+request.userId, token, {EX: 4*60*60, NX: false});
                 if (inventory) {
                     //on a fait un insert
+                    if(response.locals.characterLevel){
+                        const newLevel = response.locals.characterLevel;
+                        return response.status(201).json({inventory, newLevel});
+                    }
                     return response.status(201).json(inventory);
+                    
                 }
                 //sinon, on a fait un update
-                response.status(204).json('Enregistrement mis à jour');
+                if(response.locals.characterLevel){
+                    const newLevel = response.locals.characterLevel;
+                    return response.status(204).json(newLevel);
+                } 
+                return response.status(204).json('Enregistrement mis à jour');
             }
         } catch (error) {
             console.log(error);

@@ -19,6 +19,30 @@ class CharAttribute {
             throw error
         }
     }
+
+    async updateHp() {
+        try {
+            await db.query('SELECT * FROM updateHp($1, $2)', [Number(this.characterId), Number(this.newHp)]);
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
+
+    async augmentHp() {
+        try {
+            await db.query('SELECT * FROM updateAttribute(11, $1, $2)', [Number(this.characterId), Number(this.plusHp)]);
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
 }
 
 module.exports = CharAttribute;
