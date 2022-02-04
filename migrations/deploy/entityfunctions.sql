@@ -21,8 +21,9 @@ CREATE OR REPLACE FUNCTION getAllEntities()
 			JOIN attribute ON attribute.id = entity_attribute.attribute_id
 			),
 			rewards_items AS
-			(SELECT entity_reward_item.id, entity_reward_item.quantity, entity_reward_item.entity_id, entity_reward_item.drop_rate, item.name AS item_name, item.id AS item_id  FROM entity_reward_item
+			(SELECT entity_reward_item.id, entity_reward_item.quantity, entity_reward_item.entity_id, entity_reward_item.drop_rate, item.name AS item_name, item.id AS item_id, item_type.id AS item_type_id, item_type.name AS item_type_name  FROM entity_reward_item
 			JOIN item ON item.id = entity_reward_item.item_id
+			JOIN item_type ON item_type.id = item.item_type_id
 			)
 		SELECT entity.*,
 			jsonb_agg(DISTINCT to_jsonb(entity_att) - 'entity_id') AS attributes,

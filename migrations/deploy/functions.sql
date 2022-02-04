@@ -81,6 +81,7 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 		created_at TIMESTAMPTZ,
 		updated_at TIMESTAMPTZ,
 		level INT,
+		exp_up INT,
 		attributes JSONB,
 		equipments JSONB,
 		inventory JSONB,
@@ -127,6 +128,9 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 			)
 		SELECT character.*,
 			(select min (level_character.level) AS level
+			from level_character
+			where level_character.exp_req >= character.exp),
+			(select min (level_character.exp_req) AS exp_up
 			from level_character
 			where level_character.exp_req >= character.exp),
 			jsonb_agg(DISTINCT to_jsonb(char_att) - 'character_id') AS attributes,
