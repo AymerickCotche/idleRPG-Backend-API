@@ -30,7 +30,7 @@ module.exports = {
                 //sinon, on a fait un update
                 if(response.locals.characterLevel){
                     const newLevel = response.locals.characterLevel;
-                    return response.status(204).json(newLevel);
+                    return response.status(200).json(newLevel);
                 } 
                 return response.status(204).json('Enregistrement mis à jour');
             }
