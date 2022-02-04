@@ -24,4 +24,14 @@ CREATE OR REPLACE FUNCTION updateHp(id_character INT, new_hp INT)
 		$$
 LANGUAGE sql;
 
+CREATE OR REPLACE FUNCTION updateStatsPoints(id_character INT)
+	RETURNS void AS
+		$$
+		UPDATE "character_attribute" 
+			SET value = value + 5
+		WHERE character_attribute.attribute_id = 8 AND character_attribute.character_id = id_character;
+		
+		$$
+LANGUAGE sql;
+
 COMMIT;

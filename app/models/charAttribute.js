@@ -43,6 +43,18 @@ class CharAttribute {
             throw error
         }
     }
+
+    async updateStatsPoints() {
+        try {
+            await db.query('SELECT * FROM updateStatsPoints($1)', [Number(this.characterId)]);
+        } catch (error) {
+            console.log(error);
+            if (error.detail) {
+                throw new Error(error.detail)
+            }
+            throw error
+        }
+    }
 }
 
 module.exports = CharAttribute;

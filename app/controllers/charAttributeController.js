@@ -46,5 +46,18 @@ module.exports = {
         }
     },
 
+    async updateStatsPoints (request, response, next) {
+        try {
+            const charAttribute = await new CharAttribute(request.body).updateStatsPoints();
+            const token = jwt.makeToken(request.userId);
+            response.setHeader('Authorization', token);
+            await dbCache.set("user-0"+request.userId, token, {EX: 4*60*60, NX: false});
+            response.status(204).json('Enregistrement mis à jour');
+        } catch (error) {
+            console.log(error);
+            response.status(500).json(error.message)
+        }
+    },
+
 
 }
