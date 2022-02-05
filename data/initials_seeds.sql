@@ -44,7 +44,7 @@ INSERT INTO "item_type" ("name", "desc") VALUES
     ('consommable', 'objet utilisable et qui se détruit après consommation'),
     ('ressource', 'objet necessaire à la fabrication de d''autre objet'),
     ('arme', 'augmente les dégats du personnage'),
-    ('casque', 'augmente la force du personnage'),
+    ('casque', 'augmente l''endurance du personnage'),
     ('armure', 'augmente l''endurance du personnage'),
     ('bottes', 'augmente la dextérité du personnage');
 

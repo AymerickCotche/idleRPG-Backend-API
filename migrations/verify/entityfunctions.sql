@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add verifications here.
+SELECT * FROM entity_wit_all where false;
 
 ROLLBACK;
