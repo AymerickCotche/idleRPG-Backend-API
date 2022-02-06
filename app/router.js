@@ -19,7 +19,7 @@ const router = Router();
 
 // router.post('/user/subscribe', userController.subscribe);
 
-router.post('/user/subscribe', tempMW.subscribeUser, entityController.findAll, tempMW.createCharacter, entityController.findAll, characterController.findOne);
+router.post('/user/subscribe', tempMW.subscribeUser, tempMW.createCharacter, entityController.findAll, characterController.findOne);
 router.post('/user/login', loginMW.login, entityController.findAll, characterController.findOne);
 router.get('/user/infos', jwtMW, userController.getInfos);
 

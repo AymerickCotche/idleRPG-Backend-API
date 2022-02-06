@@ -77,7 +77,8 @@ CREATE TABLE "item" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL UNIQUE,
     "item_type_id" INT NOT NULL REFERENCES "item_type"(id),
-    "img_path" TEXT NOT NULL,
+    "img_path" TEXT,
+    "desc" TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

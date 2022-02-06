@@ -2,7 +2,7 @@
 
 BEGIN;
 
-CREATE VIEW item_with_all AS
+CREATE OR REPLACE VIEW item_with_all AS
 WITH craft_plan AS
 			(SELECT craft_plan.id, item.name, craft_plan.quantity, craft_item.item_id, craft_plan.component_id AS component_id FROM craft_item
 				JOIN craft_plan ON craft_item.craft_plan_id = craft_plan.id

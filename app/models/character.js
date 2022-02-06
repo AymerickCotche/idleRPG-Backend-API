@@ -26,7 +26,7 @@ class Character {
 
     async create() {
         try {
-            const {rows} = await db.query('SELECT * FROM createTestCharacter($1, $2, $3)', [this.name, this.id, this.img_path])
+            const {rows} = await db.query('SELECT * FROM createCharacter($1, $2, $3)', [this.name, this.id, this.img_path]);
             this.id = rows[0].id;
             return this;
         } catch (error) {

@@ -7,8 +7,8 @@ CREATE OR REPLACE FUNCTION createCharacter(name TEXT, user_id INT, img_path TEXT
 AS
 $$
 	WITH inserted_character AS (
-    INSERT INTO "character" (name, "user_id", img_path) VALUES
-        (name, user_id, img_path)
+    INSERT INTO "character" ("name", "user_id", "img_path", "gold", "exp") VALUES
+        (name, user_id, img_path, 0, 1)
         RETURNING id
 	) 
 	, ins_char_equipement AS ( 
@@ -32,19 +32,19 @@ $$
 	)
 	, ins_char_attribute AS (
 		INSERT INTO "character_attribute" ("value", "attribute_id", "character_id") VALUES
-			(5, 1, 
+			(0, 1, 
 			 (SELECT id
 			 FROM inserted_character
 			)),
-			(5, 2, 
+			(0, 2, 
 			 (SELECT id
 			 FROM inserted_character
 			)),
-			(5, 3,
+			(0, 3,
 			 (SELECT id
 			 FROM inserted_character
 			)),
-			(5, 4, 
+			(0, 4, 
 			 (SELECT id
 			 FROM inserted_character
 			)),
@@ -138,10 +138,10 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 			jsonb_agg(DISTINCT to_jsonb(char_inv) - 'character_id') AS inventory,
 			jsonb_agg(DISTINCT to_jsonb(char_job) - 'character_id') AS jobs
 		FROM character
-		JOIN char_att  ON char_att .character_id = character.id
-		JOIN char_equ ON char_equ.character_id = character.id
-		JOIN char_inv ON char_inv.character_id = character.id
-		JOIN char_job ON char_job.character_id = character.id
+		LEFT JOIN char_att  ON char_att .character_id = character.id
+		LEFT JOIN char_equ ON char_equ.character_id = character.id
+		LEFT JOIN char_inv ON char_inv.character_id = character.id
+		LEFT JOIN char_job ON char_job.character_id = character.id
 		WHERE character.user_id = id_user
 		GROUP BY character.id
 	$$

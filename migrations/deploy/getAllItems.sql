@@ -8,6 +8,7 @@ CREATE OR REPLACE FUNCTION getAllItems()
 		name TEXT,
 		item_type_id INT,
 		img_path TEXT,
+		"desc" TEXT,
 		created_at TIMESTAMPTZ,
 		updated_at TIMESTAMPTZ,
 		type TEXT,

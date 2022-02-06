@@ -2,7 +2,7 @@
 
 BEGIN;
 
-CREATE VIEW entity_wit_all AS
+CREATE OR REPLACE VIEW entity_wit_all AS
     WITH entity_att AS
                 (SELECT entity_attribute.id, entity_attribute.value, entity_attribute.entity_id, attribute.name AS attribute_name FROM entity_attribute
                 JOIN attribute ON attribute.id = entity_attribute.attribute_id
@@ -18,5 +18,5 @@ CREATE VIEW entity_wit_all AS
             FROM entity
             JOIN entity_att ON entity_att.entity_id = entity.id
             JOIN rewards_items ON rewards_items.entity_id = entity.id
-            GROUP BY entity.id
+            GROUP BY entity.id;
 COMMIT;

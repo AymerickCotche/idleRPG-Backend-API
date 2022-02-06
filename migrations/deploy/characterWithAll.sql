@@ -2,7 +2,7 @@
 
 BEGIN;
 
-CREATE VIEW character_with_all AS
+CREATE OR REPLACE VIEW character_with_all AS
     WITH char_att AS
                 (SELECT character_attribute.id, character_attribute.value, character_attribute.character_id, attribute.name FROM character_attribute
                 JOIN attribute ON attribute.id = character_attribute.attribute_id
