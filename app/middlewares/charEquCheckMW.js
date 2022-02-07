@@ -8,6 +8,7 @@ module.exports = {
         try {
             const equExists = await new CharEquipment(request.body).checkEquipment();
             response.locals.equExists = equExists;
+            console.log('Deja item porté ?', equExists);
             next();
         } catch (error) {
             console.log(error);
@@ -18,9 +19,11 @@ module.exports = {
     async getOldItemId (request, response, next) {
         try {
             if(response.locals.equExists === false) {
-                console.log(response.locals.equExists);
-                next();
+                console.log("pas d'item porté rien à retier");
+                request.body.newItemId = request.body.itemId;
+                return next();
             }
+            console.log("item porté ! on le retire");
             request.body.newItemId = request.body.itemId;
             const itemId = await new CharEquipment(request.body).getOldItemId();
             request.body.itemId = itemId;

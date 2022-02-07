@@ -18,10 +18,12 @@ module.exports = {
     async equipItem (request, response, next) {
         try {
             const charEquipment = await new CharEquipment(request.body).equipItem();
+            console.log(request.body);
             request.body.itemId = request.body.newItemId;
             request.body.quantity = -1;
             delete response.locals.nothingToDo;
             delete response.locals.equExists;
+            console.log('on est laaa');
             next();
         } catch (error) {
             console.log(error);
