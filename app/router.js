@@ -47,7 +47,7 @@ router.patch('/fight', charAttributeController.updateHp, characterController.upd
 
 router.patch('/useCons', jwtMW, charAttributeController.augmentHp, inventoryCheckMW.checkExists, inventoryController.save);
 
-router.patch('/addstatspoints', jwtMW, charAttributeController.updateStatsPoints)
+router.patch('/addstatspoints', charAttributeController.updateStatsPoints)
 
 
 //route à modifier plus tard :
