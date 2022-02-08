@@ -98,26 +98,26 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 				(SELECT item_attribute.id, item_attribute.value, item_attribute.item_id, attribute.name FROM item_attribute
 					LEFT JOIN attribute ON attribute.id = item_attribute.attribute_id 
 				)
-			SELECT character_equipment.id, character_equipment.character_id, equipment_slot.id AS slot_id, equipment_slot.name AS slot_name, character_equipment.item_id, item.name AS item_name,
+			SELECT character_equipment.id, character_equipment.character_id, equipment_slot.id AS slot_id, equipment_slot.name AS slot_name, character_equipment.item_id, item.name AS item_name, item.desc AS item_desc,
 			jsonb_agg(DISTINCT to_jsonb(item_att) - 'item_id') AS attributes
 			FROM character_equipment
 			LEFT JOIN equipment_slot ON equipment_slot.id = character_equipment.equipment_slot_id
 			LEFT JOIN item ON item.id = character_equipment.item_id
 			LEFT JOIN item_att  ON item_att.item_id = item.id
-			GROUP BY character_equipment.id, equipment_slot.id, item.name
+			GROUP BY character_equipment.id, equipment_slot.id, item.name, item.desc
 			),
 			char_inv AS
 			(WITH item_att AS
 				(SELECT item_attribute.id, item_attribute.value, item_attribute.item_id, attribute.name FROM item_attribute
 					JOIN attribute ON attribute.id = item_attribute.attribute_id 
 				)
-			SELECT inventory.character_id, inventory.item_id, item.name, item.item_type_id AS type_id, item_type.name AS type_name, inventory.quantity,
+			SELECT inventory.character_id, inventory.item_id, item.name, item.item_type_id AS type_id, item_type.name AS type_name, inventory.quantity, item.desc AS item_desc,
 			jsonb_agg(DISTINCT to_jsonb(item_att) - 'item_id') AS attributes
 			FROM inventory
 			LEFT JOIN item ON item.id = inventory.item_id
 			JOIN item_type ON item_type.id = item.item_type_id
 			JOIN item_att  ON item_att.item_id = item.id
-			GROUP BY inventory.character_id, inventory.item_id, item.name, item.item_type_id, item_type.name
+			GROUP BY inventory.character_id, inventory.item_id, item.name, item.item_type_id, item_type.name, item.desc
 			),
 			char_job AS
 			(SELECT job.id, job.name, character_job.character_id, character_job.exp,
