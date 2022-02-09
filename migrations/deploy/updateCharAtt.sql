@@ -24,6 +24,15 @@ CREATE OR REPLACE FUNCTION updateHp(id_character INT, new_hp INT)
 		$$
 LANGUAGE sql;
 
+CREATE OR REPLACE FUNCTION augmentHp(id_character INT, plus_hp INT)
+	RETURNS void AS
+		$$
+		UPDATE "character_attribute" 
+			SET value = value + plus_hp
+		WHERE character_attribute.attribute_id = 11 AND character_attribute.character_id = id_character;
+		$$
+LANGUAGE sql;
+
 CREATE OR REPLACE FUNCTION updateStatsPoints(id_character INT)
 	RETURNS void AS
 		$$

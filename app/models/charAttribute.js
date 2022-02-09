@@ -40,7 +40,7 @@ class CharAttribute {
 
 	async augmentHp() {
 		try {
-			await db.query('SELECT * FROM updateHp(11, $1, $2)', [
+			await db.query('SELECT * FROM augmentHp($1, $2)', [
 				Number(this.characterId),
 				Number(this.plusHp),
 			]);
