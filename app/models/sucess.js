@@ -1,18 +1,15 @@
 const db = require('../database');
 
-class charJob {
+class Sucess {
   constructor(obj = {}) {
     for (const prop in obj) {
       this[prop] = obj[prop];
     }
   }
-
-  async updateExp() {
+  static async findAll() {
     try {
-      await db.query(
-        'UPDATE character_job SET exp = exp + $1 WHERE character_id = $2 AND job_id = $3',
-        [this.plusExp, this.characterId, this.jobId]
-      );
+      const { rows } = await db.query('SELECT * FROM success');
+      if (rows) return rows.map((row) => new Sucess(row));
       return null;
     } catch (error) {
       console.log(error);
@@ -23,13 +20,15 @@ class charJob {
     }
   }
 
-  async getJobLevelCharacter() {
+  static async findOne(id) {
     try {
-      const { rows } = await db.query(
-        'SELECT * FROM getJobLevelCharacter($1, $2)',
-        [this.characterId, this.jobId]
-      );
-      return rows[0];
+      const { rows } = await db.query('SELECT * FROM success where id=$1', [
+        id,
+      ]);
+      if (rows[0]) {
+        return new Sucess(rows[0]);
+      }
+      return null;
     } catch (error) {
       console.log(error);
       if (error.detail) {
@@ -40,4 +39,4 @@ class charJob {
   }
 }
 
-module.exports = charJob;
+module.exports = Sucess;
