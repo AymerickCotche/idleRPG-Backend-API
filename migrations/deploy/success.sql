@@ -14,9 +14,12 @@ CREATE TABLE "character_success" (
   "character_id" INT NOT NULL REFERENCES "character"(id),
   "success_id" INT NOT NULL REFERENCES "success"(id),
   CONSTRAINT character_success_pkey PRIMARY KEY (character_id, success_id)
-)
+);
+
 ALTER TABLE CHARACTER
-RENAME COLUMN "last_entity_fought" TO "nb_entity",
+RENAME COLUMN "last_entity_fought" TO "nb_entity";
+
+ALTER TABLE CHARACTER
 ADD COLUMN nb_mineral INT NOT NULL DEFAULT 0,
 ADD COLUMN nb_fish INT NOT NULL DEFAULT 0,
 ADD COLUMN nb_purchase INT NOT NULL DEFAULT 0,
