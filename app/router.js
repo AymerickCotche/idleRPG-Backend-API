@@ -132,6 +132,8 @@ router.patch(
 router.patch('/addstatspoints', charAttributeController.updateStatsPoints);
 router.post('/char/success/add', jwtMW, charSuccessController.add);
 
+router.patch('/char/rebirth', characterController.doRebirth);
+
 router;
 
 module.exports = router;

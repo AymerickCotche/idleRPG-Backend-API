@@ -133,4 +133,14 @@ module.exports = {
       response.status(500).json(error.message);
     }
   },
+
+  async doRebirth(request, response, next) {
+    try {
+      await new Character(request.body).doRebirth();
+      response.status(204).json('Données mises à jour');
+    } catch (error) {
+      console.log(error);
+      response.status(500).json(error.message);
+    }
+  },
 };

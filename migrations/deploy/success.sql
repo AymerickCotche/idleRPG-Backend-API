@@ -15,10 +15,8 @@ CREATE TABLE "character_success" (
   "success_id" INT NOT NULL REFERENCES "success"(id),
   CONSTRAINT character_success_pkey PRIMARY KEY (character_id, success_id)
 );
-
 ALTER TABLE CHARACTER
 RENAME COLUMN "last_entity_fought" TO "nb_entity";
-
 ALTER TABLE CHARACTER
 ADD COLUMN nb_mineral INT NOT NULL DEFAULT 0,
 ADD COLUMN nb_fish INT NOT NULL DEFAULT 0,
@@ -34,7 +32,7 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 		name TEXT,
 		gold INT,
 		exp INT,
-		nb_quantity INT,
+		nb_entity INT,
 		user_id INT,
 		img_path TEXT,
 		created_at TIMESTAMPTZ,
@@ -50,7 +48,7 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 		attributes JSONB,
 		equipments JSONB,
 		inventory JSONB,
-    	success JSONB,
+    success JSONB,
 		jobs JSONB
 		)
 		AS $$
@@ -121,6 +119,74 @@ CREATE OR REPLACE FUNCTION getCharacter(id_user INT)
 		WHERE character.user_id = id_user
 		GROUP BY character.id
 	$$
+LANGUAGE sql;
+
+DROP FUNCTION createCharacter(name TEXT, user_id INT, img_path TEXT);
+
+CREATE OR REPLACE FUNCTION createCharacter(name TEXT, user_id INT, img_path TEXT) RETURNS 
+	void
+AS
+$$
+	WITH inserted_character AS (
+    INSERT INTO "character" ("name", "user_id", "img_path", "gold", "exp", "nb_entity", "nb_mineral", "nb_fish", "nb_purchase", "nb_craft", "max_fought") VALUES
+        (name, user_id, img_path, 0, 1, 0, 0, 0, 0, 0, 0)
+        RETURNING id
+	) 
+	, ins_char_equipement AS ( 
+		INSERT INTO "character_equipment" (character_id, equipment_slot_id) VALUES
+			((SELECT id
+			 FROM inserted_character
+			),
+			1),
+			((SELECT id
+			 FROM inserted_character
+			),
+			2),
+			((SELECT id
+			 FROM inserted_character
+			),
+			3),
+			((SELECT id
+			 FROM inserted_character
+			),
+			4)
+	)
+	, ins_char_attribute AS (
+		INSERT INTO "character_attribute" ("value", "attribute_id", "character_id") VALUES
+			(0, 1, 
+			 (SELECT id
+			 FROM inserted_character
+			)),
+			(0, 2, 
+			 (SELECT id
+			 FROM inserted_character
+			)),
+			(0, 3,
+			 (SELECT id
+			 FROM inserted_character
+			)),
+			(0, 4, 
+			 (SELECT id
+			 FROM inserted_character
+			)),
+			(0, 8, 
+			 (SELECT id
+			 FROM inserted_character
+			)),
+			(100, 11, 
+			 (SELECT id
+			 FROM inserted_character
+			))
+	)
+	INSERT INTO "character_job" ("character_id", "job_id") VALUES
+		((SELECT id
+			FROM inserted_character
+		), 1),
+		((SELECT id
+			FROM inserted_character
+		), 2)
+	
+$$
 LANGUAGE sql;
 
 COMMIT;
