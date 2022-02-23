@@ -29,6 +29,26 @@ module.exports = {
     }
   },
 
+  async findOnlyOne(request, response) {
+    try {
+      const character = await Character.findOne(request.body.characterId);
+      if (!character)
+        return response
+          .status(404)
+          .json(`No character found for the user with id ${id}`);
+      const token = jwt.makeToken(request.userId);
+      response.setHeader('Authorization', token);
+      await dbCache.set('user-0' + request.userId, token, {
+        EX: 4 * 60 * 60,
+        NX: false,
+      });
+      response.status(200).json({ character });
+    } catch (error) {
+      console.log(error);
+      response.status(500).json(error.message);
+    }
+  },
+
   async create(request, response) {
     try {
       const user = response.locals.user;
@@ -137,7 +157,7 @@ module.exports = {
   async doRebirth(request, response, next) {
     try {
       await new Character(request.body).doRebirth();
-      response.status(204).json('Données mises à jour');
+      next();
     } catch (error) {
       console.log(error);
       response.status(500).json(error.message);
