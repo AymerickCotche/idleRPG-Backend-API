@@ -23,7 +23,10 @@ class CharCompetence {
   static async findAllByCharacterId(id) {
     try {
       const { rows } = await db.query(
-        'SELECT * FROM character_competence WHERE character_id=$1',
+        `SELECT competence.id, competence.name, competence.desc, competence.effect, competence.increment_effect, competence.effect_type, competence.effect_stat, competence.cost, competence.increment_cost, character_competence.character_id, character_competence.level AS level_competence
+        FROM character_competence
+        LEFT JOIN competence ON competence.id = character_competence.competence_id
+        WHERE character_id=$1`,
         [id]
       );
       return rows;
