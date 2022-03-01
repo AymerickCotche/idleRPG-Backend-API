@@ -141,7 +141,7 @@ router.patch(
   characterController.findOnlyOne
 );
 
-router.get('/competences', competenceController.findAll);
+router.get('/competences', jwtMW, competenceController.findAll);
 
 router.post(
   '/char/learncompetence',
