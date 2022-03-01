@@ -163,4 +163,13 @@ module.exports = {
       response.status(500).json(error.message);
     }
   },
+  async learnCompetence(request, response, next) {
+    try {
+      await new Character(request.body).learnCompetence();
+      next();
+    } catch (error) {
+      console.log(error);
+      response.status(500).json(error.message);
+    }
+  },
 };

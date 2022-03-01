@@ -179,6 +179,23 @@ class Character {
       throw error;
     }
   }
+
+  async learnCompetence() {
+    try {
+      await db.query('SELECT * FROM learnCompetence($1, $2, $3)', [
+        this.characterId,
+        this.competenceId,
+        this.nbFruit,
+      ]);
+      return null;
+    } catch (error) {
+      console.log(error);
+      if (error.detail) {
+        throw new Error(error.detail);
+      }
+      throw error;
+    }
+  }
 }
 
 module.exports = Character;

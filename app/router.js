@@ -15,6 +15,8 @@ const charJobController = require('./controllers/charJobController');
 const sucessController = require('./controllers/sucessController');
 const charSuccessController = require('./controllers/charSuccessController');
 const { updateExp } = require('./controllers/characterController');
+const competenceController = require('./controllers/competenceController');
+const charCompetenceController = require('./controllers/charCompetenceController');
 
 const router = Router();
 
@@ -137,6 +139,15 @@ router.patch(
   jwtMW,
   characterController.doRebirth,
   characterController.findOnlyOne
+);
+
+router.get('/competences', competenceController.findAll);
+
+router.post(
+  '/char/learncompetence',
+  jwtMW,
+  characterController.learnCompetence,
+  charCompetenceController.findAllByCharacterId
 );
 
 router;
