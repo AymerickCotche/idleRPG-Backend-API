@@ -18,3 +18,4 @@ entityWithAll 2022-02-05T10:59:11Z a6kc4e <a.cotche@rt-iut.re> # Create a view t
 success 2022-02-23T07:45:03Z a6kc4e <a.cotche@rt-iut.re> # Add success table, character_succes_table and add it to get character fucntion
 rebirth 2022-02-23T14:35:40Z a6kc4e <a.cotche@rt-iut.re> # Adding rebirth function
 rebirthCompetence 2022-03-01T06:36:10Z a6kc4e <a.cotche@rt-iut.re> # Creating table and functionc to implement competence
+fixCompetence 2022-03-03T06:25:23Z a6kc4e <a.cotche@rt-iut.re> # fixing increment_effect type
